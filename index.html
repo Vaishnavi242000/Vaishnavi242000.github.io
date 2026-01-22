@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaishnavi Bhamre | Bioinformatics Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0d0d0d;
+            --bg-card: #151515;
+            --accent-coral: #ff6b6b;
+            --accent-mint: #4ecdc4;
+            --accent-gold: #ffd93d;
+            --accent-lavender: #a29bfe;
+            --text-white: #fafafa;
+            --text-gray: #9ca3af;
+            --text-dim: #6b7280;
+            --gradient-hero: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--gradient-hero);
+            overflow: hidden;
+        }
+
+        .molecule {
+            position: absolute;
+            border: 2px solid rgba(78, 205, 196, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .molecule::before {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-mint);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+            25% { transform: translateY(-50px) rotate(90deg); opacity: 0.6; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.4; }
+            75% { transform: translateY(-60px) rotate(270deg); opacity: 0.5; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(13, 13, 13, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent-mint);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-coral);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 6% 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 10;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: var(--accent-mint);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent-coral);
+        }
+
+        .hero-intro {
+            font-size: 1.15rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            max-width: 650px;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        .hero-description {
+            font-size: 1.05rem;
+            color: var(--text-dim);
+            margin-bottom: 2.5rem;
+            max-width: 620px;
+            line-height: 1.9;
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            animation: fadeIn 0.8s ease-out 0.8s both;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-coral);
+            color: var(--bg-deep);
+        }
+
+        .btn-primary:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-white);
+            border: 2px solid var(--text-dim);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-mint);
+            color: var(--accent-mint);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 6%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-mint);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-dim);
+            font-size: 1.05rem;
+            max-width: 550px;
+            margin-bottom: 3rem;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            max-width: 1100px;
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .interest-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .interest-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .interest-card:hover {
+            border-color: rgba(78, 205, 196, 0.4);
+            transform: translateX(5px);
+        }
+
+        .interest-icon {
+            font-size: 1.8rem;
+        }
+
+        .interest-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+            color: var(--text-white);
+        }
+
+        .interest-card p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .about-text h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: var(--accent-coral);
+        }
+
+        .about-text p {
+            color: var(--text-gray);
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .journey-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .journey-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .journey-list li::before {
+            content: '→';
+            color: var(--accent-mint);
+            font-weight: bold;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            max-width: 1100px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: rgba(78, 205, 196, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .skill-icon {
+            font-size: 1.3rem;
+        }
+
+        .skill-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-gray);
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            transition: all 0.2s ease;
+        }
+
+        .pill:hover {
+            background: rgba(78, 205, 196, 0.15);
+            color: var(--accent-mint);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 107, 107, 0.3);
+        }
+
+        .project-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(162, 155, 254, 0.1));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-type {
+            background: var(--accent-coral);
+            color: var(--bg-deep);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-type.wetlab {
+            background: var(--accent-lavender);
+        }
+
+        .project-type.pipeline {
+            background: var(--accent-mint);
+        }
+
+        .project-type.ml {
+            background: var(--accent-gold);
+            color: var(--bg-deep);
+        }
+
+        .project-icon {
+            font-size: 2rem;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-body h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-body p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-tech span {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent-mint);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .project-link {
+            color: var(--accent-coral);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: gap 0.3s ease;
+        }
+
+        .project-link:hover {
+            gap: 0.7rem;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            max-width: 800px;
+            position: relative;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-mint), var(--accent-coral), var(--accent-lavender));
+        }
+
+        .exp-item {
+            padding-left: 2.5rem;
+            padding-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .exp-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--bg-deep);
+            border: 2px solid var(--accent-mint);
+            border-radius: 50%;
+        }
+
+        .exp-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-mint);
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .exp-company {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .exp-item p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+        }
+
+        .edu-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .edu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-mint);
+        }
+
+        .edu-card:hover {
+            border-color: rgba(78, 205, 196, 0.3);
+        }
+
+        .edu-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-coral);
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .edu-card h4 {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .contact-text {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            text-decoration: none;
+            color: var(--text-white);
+            transition: all 0.3s ease;
+            min-width: 160px;
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent-coral);
+            transform: translateY(-5px);
+        }
+
+        .contact-card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card span {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 6%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .hero { padding: 6rem 5% 3rem; }
+            .hero h1 { font-size: 2.2rem; }
+            section { padding: 4rem 5%; }
+        }
+
+        /* Scroll Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="bg-animation" id="bgAnimation"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Vaishnavi Bhamre</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="hero-tag">🧬 Bioinformatics & Computational Biology</span>
+            <h1>Translating <span class="highlight">Biological Data</span> into Meaningful Insights</h1>
+            <p class="hero-intro">
+                MS Bioinformatics candidate at Northeastern University with a background in pharmaceutical sciences and a growing expertise in NGS analysis, pipeline development, and machine learning.
+            </p>
+            <p class="hero-description">
+                I started my career in pharmaceutical quality control, where I developed an eye for precision and data-driven problem solving. Now I'm applying those skills to computational biology—building reproducible pipelines, creating interactive data applications, and exploring how we can extract actionable insights from complex biological datasets.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-outline">Download Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-grid">
+            <div class="about-visual">
+                <div class="interest-cards">
+                    <div class="interest-card reveal">
+                        <span class="interest-icon">🧬</span>
+                        <div>
+                            <h4>Genomics & Transcriptomics</h4>
+                            <p>NGS data analysis, variant calling, gene expression</p>
+                        </div>
+                    </div>
+                    <div class="interest-card reveal">
+                        <span class="interest-icon">🦠</span>
+                        <div>
+                            <h4>Microbiome Analysis</h4>
+                            <p>16S rRNA sequencing, community profiling</p>
+                        </div>
+                    </div>
+                    <div class="interest-card reveal">
+                        <span class="interest-icon">💊</span>
+                        <div>
+                            <h4>Drug Discovery & Therapeutics</h4>
+                            <p>Nanoparticle formulation, drug delivery systems</p>
+                        </div>
+                    </div>
+                    <div class="interest-card reveal">
+                        <span class="interest-icon">🤖</span>
+                        <div>
+                            <h4>Machine Learning in Healthcare</h4>
+                            <p>Predictive modeling, classification pipelines</p>
+                        </div>
+                    </div>
+                    <div class="interest-card reveal">
+                        <span class="interest-icon">📊</span>
+                        <div>
+                            <h4>Interactive Data Applications</h4>
+                            <p>Shiny, Streamlit, data visualization dashboards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-text">
+                <span class="section-label">// About Me</span>
+                <h3>Pharmacy Background Meets Computational Biology</h3>
+                <p>
+                    I hold a Bachelor of Pharmacy with Honors from RGPV, India, where I first got excited about how technology can accelerate healthcare solutions. My undergraduate research on nanoparticle-based drug delivery gave me hands-on wet lab experience, while my Diploma in Computer Applications laid the foundation for my computational journey.
+                </p>
+                <p>
+                    After gaining industry experience in pharmaceutical quality control—running analytical tests, optimizing documentation workflows, and collaborating across teams—I wanted to tackle biological problems at a larger scale. That's what led me to Northeastern's MS Bioinformatics program.
+                </p>
+                <ul class="journey-list">
+                    <li>Building NGS pipelines with Docker, Nextflow, and version control</li>
+                    <li>Developing interactive Shiny and Streamlit apps for data exploration</li>
+                    <li>Applying machine learning to healthcare prediction challenges</li>
+                    <li>Combining wet lab knowledge with computational analysis</li>
+                    <li>Communicating complex findings to diverse scientific audiences</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="skills-container">
+            <span class="section-label">// Technical Toolkit</span>
+            <h2 class="section-title">Skills & Technologies</h2>
+            <p class="section-subtitle">From scripting languages to sequencing platforms—the tools I use to transform biological data into insights.</p>
+            
+            <div class="skills-grid">
+                <div class="skill-card reveal">
+                    <h3><span class="skill-icon">💻</span> Programming</h3>
+                    <div class="skill-pills">
+                        <span class="pill">Python</span>
+                        <span class="pill">R</span>
+                        <span class="pill">SQL</span>
+                        <span class="pill">MySQL</span>
+                        <span class="pill">Bash</span>
+                        <span class="pill">Git</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal">
+                    <h3><span class="skill-icon">🔧</span> DevOps & Infrastructure</h3>
+                    <div class="skill-pills">
+                        <span class="pill">Docker</span>
+                        <span class="pill">Nextflow</span>
+                        <span class="pill">UNIX/Linux</span>
+                        <span class="pill">HPC</span>
+                        <span class="pill">AWS</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal">
+                    <h3><span class="skill-icon">🧬</span> NGS & Bioinformatics</h3>
+                    <div class="skill-pills">
+                        <span class="pill">Illumina</span>
+                        <span class="pill">GATK</span>
+                        <span class="pill">Samtools</span>
+                        <span class="pill">STAR</span>
+                        <span class="pill">Bowtie</span>
+                        <span class="pill">HISAT2</span>
+                        <span class="pill">DESeq</span>
+                        <span class="pill">Salmon</span>
+                        <span class="pill">BLAST</span>
+                        <span class="pill">QIIME2</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal">
+                    <h3><span class="skill-icon">📊</span> Data Apps & Visualization</h3>
+                    <div class="skill-pills">
+                        <span class="pill">Shiny</span>
+                        <span class="pill">Streamlit</span>
+                        <span class="pill">ggplot2</span>
+                        <span class="pill">Matplotlib</span>
+                        <span class="pill">Seaborn</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal">
+                    <h3><span class="skill-icon">🤖</span> Machine Learning</h3>
+                    <div class="skill-pills">
+                        <span class="pill">Scikit-learn</span>
+                        <span class="pill">Random Forest</span>
+                        <span class="pill">Logistic Regression</span>
+                        <span class="pill">PCA</span>
+                        <span class="pill">SMOTE</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal">
+                    <h3><span class="skill-icon">🔬</span> Wet Lab & Pharma</h3>
+                    <div class="skill-pills">
+                        <span class="pill">Nanoparticle Synthesis</span>
+                        <span class="pill">Cell Culture</span>
+                        <span class="pill">ELISA</span>
+                        <span class="pill">UV-Vis Spectroscopy</span>
+                        <span class="pill">Animal Handling</span>
+                        <span class="pill">QC Testing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <span class="section-label">// Featured Work</span>
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">A mix of computational pipelines, interactive applications, and wet lab research.</p>
+        
+        <div class="projects-grid">
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-type pipeline">NGS Pipeline</span>
+                    <span class="project-icon">🦠</span>
+                </div>
+                <div class="project-body">
+                    <h3>16S rRNA Microbiome Analysis Pipeline</h3>
+                    <p>Built an automated, containerized workflow for gut microbiome analysis. Identified significant microbial composition changes in Type 2 diabetes patients following high-fiber diet intervention.</p>
+                    <div class="project-tech">
+                        <span>QIIME2</span>
+                        <span>Python</span>
+                        <span>Docker</span>
+                        <span>Git</span>
+                    </div>
+                    <a href="https://github.com/Vaishnavi242000" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-type">Interactive App</span>
+                    <span class="project-icon">📈</span>
+                </div>
+                <div class="project-body">
+                    <h3>Gene Expression Visualization Dashboard</h3>
+                    <p>Developed Shiny and Streamlit prototypes that let researchers explore differential gene expression results interactively. Integrated with backend databases for seamless data retrieval.</p>
+                    <div class="project-tech">
+                        <span>R Shiny</span>
+                        <span>Streamlit</span>
+                        <span>ggplot2</span>
+                        <span>SQL</span>
+                    </div>
+                    <a href="#" class="project-link">Live Demo →</a>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-type ml">Machine Learning</span>
+                    <span class="project-icon">🧠</span>
+                </div>
+                <div class="project-body">
+                    <h3>Mental Health State Prediction</h3>
+                    <p>Created an automated ML pipeline comparing Naive Bayes, Random Forest, and Logistic Regression models. Used PCA for dimensionality reduction and SMOTE to handle class imbalance.</p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>Scikit-learn</span>
+                        <span>PCA</span>
+                        <span>SMOTE</span>
+                    </div>
+                    <a href="https://github.com/Vaishnavi242000" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-type wetlab">Wet Lab</span>
+                    <span class="project-icon">💊</span>
+                </div>
+                <div class="project-body">
+                    <h3>Solid Lipid Nanoparticle Formulation</h3>
+                    <p>Designed and synthesized SLNs for Nateglinide delivery. Characterized particles using zeta potential analysis, optimized encapsulation efficiency, and conducted in vitro release and stability testing.</p>
+                    <div class="project-tech">
+                        <span>Nanoparticle Synthesis</span>
+                        <span>Zeta Potential</span>
+                        <span>Stability Testing</span>
+                    </div>
+                    <a href="#" class="project-link">View Details →</a>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-type wetlab">In Vivo Research</span>
+                    <span class="project-icon">🐁</span>
+                </div>
+                <div class="project-body">
+                    <h3>Animal Handling & Sample Collection</h3>
+                    <p>Conducted subcutaneous, intravenous, and intraperitoneal injections in mice models during undergraduate research. Maintained strict dosing protocols and ensured animal welfare compliance.</p>
+                    <div class="project-tech">
+                        <span>Mouse Models</span>
+                        <span>IV/IP Injection</span>
+                        <span>Sample Collection</span>
+                    </div>
+                    <a href="#" class="project-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-type">Publication</span>
+                    <span class="project-icon">📝</span>
+                </div>
+                <div class="project-body">
+                    <h3>Review: Emerging Therapies for Type II Diabetes</h3>
+                    <p>Authored a comprehensive review covering current treatments and future directions, including novel drug delivery approaches, GLP-1 agonists, and personalized medicine strategies.</p>
+                    <div class="project-tech">
+                        <span>Literature Review</span>
+                        <span>Scientific Writing</span>
+                        <span>Diabetes Research</span>
+                    </div>
+                    <a href="#" class="project-link">Read Article →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <span class="section-label">// Professional Journey</span>
+        <h2 class="section-title">Experience</h2>
+        <p class="section-subtitle">From pharmaceutical labs to computational biology.</p>
+        
+        <div class="experience-timeline">
+            <div class="exp-item reveal">
+                <div class="exp-date">Dec 2023 – Jul 2024</div>
+                <h3>Quality Control Analyst</h3>
+                <div class="exp-company">KTF Pharmaceuticals, India</div>
+                <p>Conducted UV-Vis and IR spectroscopy testing for drug purity and stability. Reduced documentation turnaround by 15% and improved SOP accuracy by 30% through systematic process optimization. Collaborated with production and QA teams to resolve analytical deviations.</p>
+            </div>
+            
+            <div class="exp-item reveal">
+                <div class="exp-date">Jun 2023 – Aug 2023</div>
+                <h3>Trainee Sales Executive</h3>
+                <div class="exp-company">Sun Pharmaceuticals, India</div>
+                <p>Managed 20+ accounts and achieved 15% revenue growth through data-driven client engagement and analytical reporting strategies.</p>
+            </div>
+            
+            <div class="exp-item reveal">
+                <div class="exp-date">Jun 2022 – Jul 2022</div>
+                <h3>Intern Trainee</h3>
+                <div class="exp-company">Comworld Remedies, India</div>
+                <p>Assisted in formulation development and improved inventory tracking accuracy by 15% using database management and data-driven reporting.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <span class="section-label">// Academic Background</span>
+        <h2 class="section-title">Education</h2>
+        <p class="section-subtitle">Building expertise across pharmacy, computer science, and bioinformatics.</p>
+        
+        <div class="education-grid">
+            <div class="edu-card reveal">
+                <div class="edu-date">Aug 2024 – May 2027</div>
+                <h3>Master of Science in Bioinformatics</h3>
+                <h4>Northeastern University, Boston, MA</h4>
+            </div>
+            <div class="edu-card reveal">
+                <div class="edu-date">Aug 2019 – Jul 2023</div>
+                <h3>Bachelor of Pharmacy with Honors</h3>
+                <h4>Rajeev Gandhi Proudyogiki Vishwavidyalaya, India</h4>
+            </div>
+            <div class="edu-card reveal">
+                <div class="edu-date">May 2021 – Jan 2022</div>
+                <h3>Diploma in Computer Applications</h3>
+                <h4>Makhanlal Chaturvedi National University, India</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-container">
+            <span class="section-label">// Get In Touch</span>
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="contact-text">
+                I'm actively seeking bioinformatics opportunities where I can apply my blend of wet lab experience and computational skills. Whether you're working on genomics pipelines, data visualization tools, or healthcare ML applications—I'd love to hear from you.
+            </p>
+            <div class="contact-grid">
+                <a href="mailto:bhamre.v@northeastern.edu" class="contact-card">
+                    <div class="icon">✉️</div>
+                    <span>Email</span>
+                </a>
+                <a href="https://linkedin.com/in/vaishnavi-bhamre" target="_blank" class="contact-card">
+                    <div class="icon">💼</div>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/Vaishnavi242000" target="_blank" class="contact-card">
+                    <div class="icon">🐙</div>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Vaishnavi Bhamre • Bioinformatics & Computational Biology</p>
+    </footer>
+
+    <script>
+        // Create floating molecules
+        function createMolecules() {
+            const bg = document.getElementById('bgAnimation');
+            for (let i = 0; i < 15; i++) {
+                const molecule = document.createElement('div');
+                molecule.className = 'molecule';
+                const size = Math.random() * 60 + 30;
+                molecule.style.width = `${size}px`;
+                molecule.style.height = `${size}px`;
+                molecule.style.left = `${Math.random() * 100}%`;
+                molecule.style.top = `${Math.random() * 100}%`;
+                molecule.style.animationDelay = `${Math.random() * 20}s`;
+                molecule.style.animationDuration = `${15 + Math.random() * 10}s`;
+                bg.appendChild(molecule);
+            }
+        }
+
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createMolecules();
+            revealOnScroll();
+        });
+
+        window.addEventListener('scroll', revealOnScroll);
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
